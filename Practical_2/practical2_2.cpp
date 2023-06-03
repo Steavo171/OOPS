@@ -29,9 +29,7 @@ class Triangle{
 
 int main(){
 
-
-    Triangle t;
-    t = Triangle(10,50);
+    Triangle t(10,50);
     cout<< "\narea = " <<t.area();
     cout<< "\nperimeter = " <<t.perimeter();
 
