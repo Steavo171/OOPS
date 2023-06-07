@@ -2,6 +2,8 @@
 
 using namespace std;
 
+class distance2;
+
 class distance1
 {
     public:
@@ -27,14 +29,21 @@ class distance1
 
         }
 
+    friend distance2 add_distance_2(distance1 d1, distance2 d2);
 };
 
 class distance2 
 {
-    int feet;
-    int inches;
-    
     public:
+        int feet;
+        int inches;
+
+        distance2(){}
+        distance2(int f, int i){
+            feet=f;
+            inches=i;
+        }
+        
         void read_data() {
             cout<<"Enter feet value:";
             cin>>feet;
@@ -43,7 +52,7 @@ class distance2
         }   
     
         void display() {
-            cout<<"The distance is "<<feet<<" feet and "<<inches<<" inches"<<endl;
+            cout<<"The distance is  : "<<feet<<" feet and "<<inches<<" inches"<<endl;
         }
     
         friend distance1 add_distance(distance1 d1, distance2 d2);      
@@ -61,6 +70,18 @@ distance1 add_distance(distance1 d1, distance2 d2) {
     return result;
 }
 
+distance2 add_distance_2(distance1 d1 , distance2 d2){
+
+    distance2 result1;
+    int total_inches_d2 = d2.feet*12 + d2.inches;
+    int total_centimeters_d1 = d1.meters*100 + d1.centimeters;
+    int total_inches = total_inches_d2 + int(total_centimeters_d1/2.54);
+
+    result1.feet = total_inches / 12;
+    result1.inches = total_inches % 12;
+    
+    return result1;
+}
 
 int main()
 {
@@ -75,9 +96,11 @@ int main()
     d2.read_data();
     
     distance1 sum = add_distance(d1, d2);
-    
+    distance2 sum1 = add_distance_2(d1,d2);
+
     cout<<"Sum of distances:";
     sum.display();
+    sum1.display();
 
     return 0;
 }
