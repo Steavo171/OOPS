@@ -9,7 +9,7 @@ public:
     {
         cout<<"Constructor called"<<endl;
     }
-    
+
     // destructor
     ~Parent()
     {
